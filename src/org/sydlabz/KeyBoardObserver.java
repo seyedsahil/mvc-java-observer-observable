@@ -5,12 +5,12 @@ import java.util.Observer;
 
 public class KeyBoardObserver implements Observer {
     private KeyBoardObservable keyBoardObservable;
-    private StringBuffer safeCommand;
+    private FilteredInput safeCommand;
 
-    public KeyBoardObserver(KeyBoardObservable keyBoardObservable) {
+    public KeyBoardObserver(KeyBoardObservable keyBoardObservable, FilteredInput safeCommand) {
         super();
         this.keyBoardObservable = keyBoardObservable;
-        safeCommand = new StringBuffer();
+        this.safeCommand = safeCommand;
     }
 
     @Override
@@ -21,9 +21,5 @@ public class KeyBoardObserver implements Observer {
         } else {
             throw new RuntimeException("Invalid application state.");
         }
-    }
-
-    public String getSafeCommand() {
-        return safeCommand.toString();
     }
 }

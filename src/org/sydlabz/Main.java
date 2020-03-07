@@ -4,8 +4,9 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
+        FilteredInput safeCommand = new FilteredInput();
         KeyBoardObservable keyBoardObservable = new KeyBoardObservable(System.in);
-        KeyBoardObserver keyBoardObserver = new KeyBoardObserver(keyBoardObservable);
+        KeyBoardObserver keyBoardObserver = new KeyBoardObserver(keyBoardObservable, safeCommand);
         keyBoardObservable.addObserver(keyBoardObserver);
         while (true) {
             char input = keyBoardObservable.read();
@@ -13,6 +14,6 @@ public class Main {
                 break;
             }
         }
-        System.out.println("Filtered Input: " + keyBoardObserver.getSafeCommand());
+        System.out.println("Filtered Input: " + safeCommand.getInput());
     }
 }
